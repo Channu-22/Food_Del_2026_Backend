@@ -8,7 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 //placing user order from frontend
 export const placeOrder = async (req, res) => {
   try {
-    const frontend_url = "https://food-del-channu22-frontend.vercel.app"
+    // const frontend_url = "https://food-del-channu22-frontend.vercel.app"
+     const frontend_url = "https://food-del-channu-frontend.onrender.com"
     const newOrder = new Order({
       userId: req.user.userId,
       items: req.body.items,
@@ -173,7 +174,7 @@ export const updateStatus = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Order status updated successfully",
+      message: `Order status updated to ${status}`,
       data: updatedOrder,
     });
 
