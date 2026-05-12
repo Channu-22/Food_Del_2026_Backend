@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 import dotenv from "dotenv";
 import dbConnection from "./config/database.js";
 import foodRoute from "./routes/foodRoute.js";
@@ -14,16 +15,16 @@ const PORT = process.env.PORT || 8000;
 
 //middleware
 app.use(express.json());
+app.use(compression());
 app.use(cors());
-// app.use(cors({
-//   origin: "http://localhost:5173", // or whatever port your frontend runs on
-//   credentials: true
-// }));
 
 app.get("/", (req, res) => {
     res.send("API WORKING")
 
 })
+app.get("/ping", (req, res) => {
+    res.status(200).send("Server Active");
+});
 
 // api endpoint
 // app.use("/images",express.static("uploads"));
