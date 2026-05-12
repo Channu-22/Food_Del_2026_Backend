@@ -23,7 +23,12 @@ app.get("/", (req, res) => {
 
 })
 app.get("/ping", (req, res) => {
-    res.status(200).send("Server Active");
+    res.status(200).json({
+        success: true,
+        uptime: process.uptime(),
+        message: "Server Active",
+        timestamp: new Date()
+    });
 });
 
 // api endpoint
